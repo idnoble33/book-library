@@ -11,10 +11,12 @@ mongoose.Promise = global.Promise;
 //mongoose.connect(config.DATABASE,{ useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex: true });
 mongoose.connect(config.DATABASE);
 
- const { User } = require('./server/model/user');
- const { Book } = require('./server/model/book');
- const { auth } = require('./server/middleware/auth');
-
+//  const { User } = require('./server/model/user');
+//  const { Book } = require('./server/model/book');
+//  const { auth } = require('./server/middleware/auth');
+const { User } = require('./model/user');
+ const { Book } = require('./model/book');
+ const { auth } = require('./middleware/auth');
  
 app.use(bodyParser.json());
 app.use(cookieParser());
