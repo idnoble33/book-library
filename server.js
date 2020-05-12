@@ -2,11 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const config = require('./server/config/config').get(process.env.NODE_ENV);
+//const config = require('./server/config/config').get(process.env.NODE_ENV);
+const config = require('./config/config').get(process.env.NODE_ENV);
+
 const app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.DATABASE,{ useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex: true });
+//mongoose.connect(config.DATABASE,{ useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect(config.DATABASE);
 
  const { User } = require('./server/model/user');
  const { Book } = require('./server/model/book');
@@ -157,7 +160,7 @@ app.delete('/api/delete_book',(req,res)=>{
 if(process.env.NODE_ENV === 'production'){
   const path = require('path');
   app.get('/*',(req,res)=>{
-    res.sendfile(path.resolve(_dirname,'../client','build','index.html'))
+    res.sendfile(path.resolve(__dirname,'../client','build','index.html'))
   })
 }
 
